@@ -70,3 +70,18 @@ await users.resetPassword({
   email: 'gary@example.com'
 })
 ```
+
+## Email Usage
+
+Consider using `https://mjml.io` for email html
+
+```js
+const { email } = require('rise-utils')
+
+await email.send({
+  body: '<p>hello</p>',
+  subject: 'Welcome',
+  to: 'john@example.com',
+  from: 'test@example.com'
+})
+```
