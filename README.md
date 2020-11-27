@@ -8,7 +8,7 @@ Required ENVS:
 - REGION (default is us-east-1)
 
 ```js
-const { db } = require('rese-utils')
+const { db } = require('rise-utils')
 
 await db.create({
   PK: 'gary@example.com',
@@ -46,5 +46,27 @@ await db.query({
 await db.query({
   GSI2: 'org_1234',
   SK: 'task_'
+})
+```
+
+## Users Usage
+
+Required ENV
+
+- USERPOOL_ID
+
+```js
+const { users } = require('rise-utils')
+
+await users.create({
+  email: 'gary@example.com'
+})
+
+await users.remove({
+  email: 'gary@example.com'
+})
+
+await users.resetPassword({
+  email: 'gary@example.com'
 })
 ```
