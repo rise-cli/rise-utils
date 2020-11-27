@@ -33,20 +33,40 @@ await db.get({
   SK: 'task_24'
 })
 
-await db.query({
+await db.list({
   PK: 'gary@example.com',
   SK: 'task_'
 })
 
-await db.query({
+await db.list({
   GSI1: 'team_1234',
   SK: 'task_'
 })
 
-await db.query({
+await db.list({
   GSI2: 'org_1234',
   SK: 'task_'
 })
+
+// Pagination: get first page
+await db.list({
+  PK: 'gary@example.com',
+  SK: 'task_',
+  limit: 10
+})
+
+// Pagination: get second page
+await db.list({
+  PK: 'gary@example.com',
+  SK: 'task_',
+  limit: 10,
+  startAt: {
+    PK: 'gary@example.com',
+    SK: 'task_11
+  }
+})
+
+
 ```
 
 ## Users Usage

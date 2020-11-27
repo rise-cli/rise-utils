@@ -164,3 +164,54 @@ test('db works', async (done) => {
   await db.remove(idTestItem)
   done()
 })
+
+test('db pagination works', async (done) => {
+  const item = await db.set({
+    PK: 'team_1234',
+    SK: 'item_1234'
+  })
+
+  const item2 = await db.set({
+    PK: 'team_1234',
+    SK: 'item_1235'
+  })
+
+  const item3 = await db.set({
+    PK: 'team_1234',
+    SK: 'item_1236'
+  })
+
+  const item4 = await db.set({
+    PK: 'team_1234',
+    SK: 'item_1237'
+  })
+
+  const list1 = await db.list({
+    PK: 'team_1234',
+    SK: 'item',
+    limit: 2
+  })
+
+  expect(list1).toEqual([
+    { PK: 'team_1234', SK: 'item_1234' },
+    { PK: 'team_1234', SK: 'item_1235' }
+  ])
+
+  const list2 = await db.list({
+    PK: 'team_1234',
+    SK: 'item',
+    limit: 2,
+    startAt: list1[1]
+  })
+
+  expect(list2).toEqual([
+    { PK: 'team_1234', SK: 'item_1236' },
+    { PK: 'team_1234', SK: 'item_1237' }
+  ])
+
+  await db.remove(item)
+  await db.remove(item2)
+  await db.remove(item3)
+  await db.remove(item4)
+  done()
+})

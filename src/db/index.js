@@ -77,6 +77,8 @@ const list = async (input, table = process.env.TABLE) => {
   if (input.PK) {
     params = {
       TableName: table,
+      ...(input.limit ? { Limit: input.limit } : {}),
+      ...(input.startAt ? { ExclusiveStartKey: input.startAt } : {}),
       KeyConditionExpression: 'PK = :pk AND begins_with(SK, :sk)',
       ExpressionAttributeValues: {
         ':pk': input.PK,
@@ -88,6 +90,8 @@ const list = async (input, table = process.env.TABLE) => {
   if (input.GSI1) {
     params = {
       TableName: table,
+      ...(input.limit ? { Limit: input.limit } : {}),
+      ...(input.startAt ? { ExclusiveStartKey: input.startAt } : {}),
       IndexName: 'GSI1',
       KeyConditionExpression: 'GSI1 = :gsi AND begins_with(SK, :sk)',
       ExpressionAttributeValues: {
@@ -100,6 +104,8 @@ const list = async (input, table = process.env.TABLE) => {
   if (input.GSI2) {
     params = {
       TableName: table,
+      ...(input.limit ? { Limit: input.limit } : {}),
+      ...(input.startAt ? { ExclusiveStartKey: input.startAt } : {}),
       IndexName: 'GSI2',
       KeyConditionExpression: 'GSI2 = :gsi AND begins_with(SK, :sk)',
       ExpressionAttributeValues: {
