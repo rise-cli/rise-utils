@@ -5,10 +5,10 @@
 Required ENVS:
 
 - TABLE
-- REGION
+- REGION (default is us-east-1)
 
 ```js
-const { db } = require('@cnktech/utils')
+const { db } = require('rese-utils')
 
 await db.create({
   PK: 'gary@example.com',
