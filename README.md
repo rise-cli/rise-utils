@@ -1,6 +1,6 @@
 # rise-utils
 
-## DB Usage
+## DB
 
 Required ENVS:
 
@@ -69,7 +69,7 @@ await db.list({
 
 ```
 
-## Users Usage
+## Users
 
 Required ENV
 
@@ -91,7 +91,7 @@ await users.resetPassword({
 })
 ```
 
-## Email Usage
+## Email
 
 Consider using `https://mjml.io` for email html
 
@@ -103,5 +103,23 @@ await email.send({
   subject: 'Welcome',
   to: 'john@example.com',
   from: 'test@example.com'
+})
+```
+
+## Emitter
+
+Required ENV
+
+- ACCOUNT_ID
+
+```js
+const { emitter } = require('rise-utils')
+
+await emitter.send({
+  event: 'user-created',
+  data: {
+    id: '1234',
+    name: 'John'
+  }
 })
 ```

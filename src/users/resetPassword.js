@@ -17,6 +17,14 @@ const hasUserUsedTemporaryPassword = async (email) => {
 }
 
 module.exports = async ({ email }) => {
+  if (!email) {
+    throw new Error('ResetPassword must have an email defined')
+  }
+
+  if (!process.env.USERPOOL_ID) {
+    throw new Error('CreateUser must have process.env.USERPOOL_ID defined')
+  }
+
   const usedTemp = await hasUserUsedTemporaryPassword(email)
 
   if (usedTemp) {

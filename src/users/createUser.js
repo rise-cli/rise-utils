@@ -5,6 +5,14 @@ const cognito = new aws.CognitoIdentityServiceProvider({
 })
 
 module.exports = async ({ email }) => {
+  if (!email) {
+    throw new Error('CreateUser must have an email defined')
+  }
+
+  if (!process.env.USERPOOL_ID) {
+    throw new Error('CreateUser must have process.env.USERPOOL_ID defined')
+  }
+
   const pass = password()
   const params = {
     UserPoolId: process.env.USERPOOL_ID,
