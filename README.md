@@ -4,8 +4,8 @@
 
 Required ENVS:
 
-- TABLE
-- REGION (default is us-east-1)
+-   TABLE
+-   REGION (default is us-east-1)
 
 ```js
 const { db } = require('rise-utils')
@@ -73,21 +73,21 @@ await db.list({
 
 Required ENV
 
-- USERPOOL_ID
+-   USERPOOL_ID
 
 ```js
 const { users } = require('rise-utils')
 
 await users.create({
-  email: 'gary@example.com'
+    email: 'gary@example.com'
 })
 
 await users.remove({
-  email: 'gary@example.com'
+    email: 'gary@example.com'
 })
 
 await users.resetPassword({
-  email: 'gary@example.com'
+    email: 'gary@example.com'
 })
 ```
 
@@ -99,27 +99,46 @@ Consider using `https://mjml.io` for email html
 const { email } = require('rise-utils')
 
 await email.send({
-  body: '<p>hello</p>',
-  subject: 'Welcome',
-  to: 'john@example.com',
-  from: 'test@example.com'
+    body: '<p>hello</p>',
+    subject: 'Welcome',
+    to: 'john@example.com',
+    from: 'test@example.com'
 })
 ```
 
-## Emitter
+## Emitter (SNS)
 
 Required ENV
 
-- ACCOUNT_ID
+-   ACCOUNT_ID
 
 ```js
 const { emitter } = require('rise-utils')
 
 await emitter.send({
-  event: 'user-created',
-  data: {
-    id: '1234',
-    name: 'John'
-  }
+    event: 'user-created',
+    data: {
+        id: '1234',
+        name: 'John'
+    }
+})
+```
+
+## Events (EventBridge)
+
+Required ENV
+
+-   APP_NAME
+-   EVENT_BUS (default is default)
+
+```js
+const { events } = require('rise-utils')
+
+await events.send({
+    event: 'user-created',
+    data: {
+        id: '1234',
+        name: 'John'
+    }
 })
 ```
