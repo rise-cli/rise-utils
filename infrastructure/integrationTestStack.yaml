@@ -1,8 +1,8 @@
 Resources:
-    TestTable:
+    IntegrationTestTable:
         Type: AWS::DynamoDB::Table
         Properties:
-            TableName: TestTable
+            TableName: IntegrationTestTable
             AttributeDefinitions:
                 - AttributeName: PK
                   AttributeType: S
